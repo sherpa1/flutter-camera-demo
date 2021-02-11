@@ -1,9 +1,3 @@
-// Copyright 2019 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
 import 'dart:async';
 import 'dart:io';
 
@@ -14,7 +8,7 @@ import 'package:video_player/video_player.dart';
 class CameraExampleHome extends StatefulWidget {
   CameraExampleHome({Key key, this.cameras});
 
-  final List<CameraDescription> cameras;
+  final List<CameraDescription> cameras; //get available cameras list from main
 
   @override
   _CameraExampleHomeState createState() {

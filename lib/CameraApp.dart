@@ -11,7 +11,8 @@ class CameraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: CameraExampleHome(
-        cameras: cameras,
+        cameras:
+            cameras, //transmit available cameras list from main to CameraExampleHome constructor
       ),
     );
   }
