@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:camera/camera.dart';
 import 'package:camerademo/CameraApp.dart';
-// void main() {
-//   runApp(MyApp());
-// }
 
-List<CameraDescription> cameras = [];
+List<CameraDescription> cameras = []; //available cameras list
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,5 +15,7 @@ Future<void> main() async {
   } on CameraException catch (e) {
     logError(e.code, e.description);
   }
-  runApp(CameraApp(cameras: cameras));
+  runApp(CameraApp(
+      cameras:
+          cameras)); //transmit available cameras list to CameraApp constructor
 }

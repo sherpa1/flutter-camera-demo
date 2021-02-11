@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CameraExampleHome extends StatefulWidget {
   CameraExampleHome({Key key, this.cameras});
 
-  final List<CameraDescription> cameras;
+  final List<CameraDescription> cameras; //get available cameras list from main
 
   @override
   _CameraExampleHomeState createState() {
