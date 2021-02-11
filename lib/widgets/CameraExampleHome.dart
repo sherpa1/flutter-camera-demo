@@ -54,20 +54,6 @@ class _CameraExampleHomeState extends State<CameraExampleHome> {
     super.dispose();
   }
 
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // App state changed before we got the chance to initialize.
-    if (controller == null || !controller.value.isInitialized) {
-      return;
-    }
-    if (state == AppLifecycleState.inactive) {
-      controller?.dispose();
-    } else if (state == AppLifecycleState.resumed) {
-      if (controller != null) {
-        print(controller);
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (!controller.value.isInitialized) {
