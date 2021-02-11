@@ -12,6 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class CameraExampleHome extends StatefulWidget {
+  CameraExampleHome({Key key, this.cameras});
+
+  final List<CameraDescription> cameras;
+
   @override
   _CameraExampleHomeState createState() {
     return _CameraExampleHomeState();
@@ -520,27 +524,33 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
   Widget _cameraTogglesRowWidget() {
     final List<Widget> toggles = <Widget>[];
 
-    if (cameras.isEmpty) {
-      return const Text('No camera found');
-    } else {
-      for (CameraDescription cameraDescription in cameras) {
-        toggles.add(
-          SizedBox(
-            width: 90.0,
-            child: RadioListTile<CameraDescription>(
-              title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
-              groupValue: controller?.description,
-              value: cameraDescription,
-              onChanged: controller != null && controller.value.isRecordingVideo
-                  ? null
-                  : onNewCameraSelected,
+    try {
+      if (widget.cameras.isEmpty) {
+        return const Text('No camera found');
+      } else {
+        for (CameraDescription cameraDescription in widget.cameras) {
+          toggles.add(
+            SizedBox(
+              width: 90.0,
+              child: RadioListTile<CameraDescription>(
+                title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
+                groupValue: controller?.description,
+                value: cameraDescription,
+                onChanged:
+                    controller != null && controller.value.isRecordingVideo
+                        ? null
+                        : onNewCameraSelected,
+              ),
             ),
-          ),
-        );
+          );
+        }
       }
-    }
 
-    return Row(children: toggles);
+      return Row(children: toggles);
+    } catch (e) {
+      print(e.toString());
+      return Container();
+    }
   }
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
@@ -858,26 +868,4 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
     logError(e.code, e.description);
     showInSnackBar('Error: ${e.code}\n${e.description}');
   }
-}
-
-class CameraApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CameraExampleHome(),
-    );
-  }
-}
-
-List<CameraDescription> cameras = [];
-
-Future<void> main() async {
-  // Fetch the available cameras before initializing the app.
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    cameras = await availableCameras();
-  } on CameraException catch (e) {
-    logError(e.code, e.description);
-  }
-  runApp(CameraApp());
 }

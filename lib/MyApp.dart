@@ -1,5 +1,5 @@
+import 'package:camerademo/widgets/CameraExampleHome.dart';
 import 'package:flutter/material.dart';
-import 'package:camerademo/widgets/MyHomePage.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: CameraExampleHome(),
     );
   }
 }
