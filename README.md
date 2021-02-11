@@ -2,6 +2,15 @@
 
 Exemple de projet Flutter utilisant le package camera
 
+Ce projet correspond à une adaptation des exemples fournis par le plugin camera, avec une réorganisation du code pour en simplifier la compréhension (séparation des classes, app et fonction main en fichiers autonomes).
+
+## Versions
+
+2 exemples d'utilisation de la caméra avec Flutter sont disponibles :
+
+- branch main (utilisation basique, caméra plein écran),
+- branch advanced (utilisation avancée avec interface utilisateur complète),
+
 ## Dépendances
 
 ### Camera
